@@ -1,0 +1,70 @@
+{
+  "tweets": [
+    {
+      "_id": "g1f2hz9xv1f",
+      "text": "Не надо паники",
+      "images": [],
+      "user": {
+        "fullname": "Anastasia",
+        "username": "devarrrt",
+        "avatarUrl": "https://sun1-21.userapi.com/impg/QQh8O3aLreAYJd7LA9anm4lYYfjPG29KZC2RKg/35r2rbfNAjI.jpg?size=100x0&quality=96&crop=160,160,1280,1280&sign=4602bdb31e0553905d13ee60a612a832&ava=1"
+      },
+      "id": 1
+    },
+    {
+      "_id": "76gcqxcsizh",
+      "text": "hello",
+      "user": {
+        "fullname": "Test",
+        "username": "devarrrt",
+        "avatarUrl": "https://sun1-21.userapi.com/impg/QQh8O3aLreAYJd7LA9anm4lYYfjPG29KZC2RKg/35r2rbfNAjI.jpg?size=100x0&quality=96&crop=160,160,1280,1280&sign=4602bdb31e0553905d13ee60a612a832&ava=1"
+      },
+      "id": 2
+    }
+  ],
+  "tags": [
+    {
+      "_id": "5fe5f8d8f93d44f1ec1190079",
+      "name": "#Frontend",
+      "count": 2392
+    },
+    {
+      "_id": "5fe5f8d8f9d344f1ec1190079",
+      "name": "#ReactJS",
+      "count": 433
+    },
+    {
+      "_id": "5fe5f8d8f93g44f1ec1190079",
+      "name": "#HolyJS",
+      "count": 533
+    },
+    {
+      "_id": "5fe5f8d8f93g44f1ec1190073",
+      "name": "#Петербург",
+      "count": 1229
+    }
+  ],
+  "users": [
+    {
+      "fullname": "Earline Velazquez",
+      "userName": "Tabitha",
+      "avatarUrl": "https://gitlab.com/uploads/-/system/user/avatar/1618056/avatar.png?width=40"
+    },
+    {
+      "fullname": "Lamb Baird",
+      "userName": "Molly",
+      "avatarUrl": "https://gitlab.com/uploads/-/system/user/avatar/1618056/avatar.png?width=40"
+    },
+    {
+      "fullname": "Ila Buckley",
+      "userName": "Toni",
+      "avatarUrl": "https://gitlab.com/uploads/-/system/user/avatar/1618056/avatar.png?width=40"
+    }
+  ],
+  "user": {
+    "_id": "5fe5f8d838136beaa4c42eda",
+    "fullname": "Anastasia Devarrrt",
+    "userName": "devarrrt",
+    "avatarUrl": "https://scontent-arn2-1.cdninstagram.com/v/t51.2885-19/s150x150/130444872_4743727142368899_1937020410749379007_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com&amp;_nc_ohc=mZ2GvFEaNtkAX8lGXdG&amp;tp=1&amp;oh=2f4608d2971a27ec43324397d81c98a8&amp;oe=6012B757"
+  }
+}
