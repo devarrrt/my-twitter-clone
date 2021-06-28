@@ -1,9 +1,8 @@
 
 import { Action } from 'redux';
-import { Tweet } from '../tweets/stateTypes';
 import { LoadingStatus, TweetState } from './stateTypes'
 
-
+ 
 export enum TweetActionsType {
 	FETCH_TWEET_DATA = 'tweet/FETCH_TWEET_DATA',
 	SET_TWEET_DATA = 'tweet/SET_TWEET_DATA',
@@ -45,7 +44,7 @@ export const SetLoadingStatusAction = (payload: LoadingStatus): SetLoadingStatus
 
   
 export type TweetActions =
-FetchTweetDataAI |
+	FetchTweetDataAI |
 	SetTweetDataAI |
 	SetLoadingStatusAI
 

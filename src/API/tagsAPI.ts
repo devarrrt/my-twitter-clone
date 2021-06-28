@@ -3,8 +3,8 @@ import { TagsState } from './../redux/ducks/tags/stateTypes';
 
 
 export const TagsAPI = {
-	fetchTags( ):Promise<TagsState['tags']>{
-	return axios.get('http://localhost:3001/tags').then(({ data }) => data)
+	async	fetchTags( ):Promise<TagsState['tags']>{
+	return axios.get('/tags').then(({ data }) => data)
 	}		
 }
 

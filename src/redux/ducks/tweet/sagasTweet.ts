@@ -7,13 +7,13 @@ import { LoadingStatus } from './stateTypes';
 
 export function* fetchTweetDataRequest({ payload: tweetId }: FetchTweetDataAI ){
 try {
-	const data: Tweet[] = yield call ( TweetsAPI.fetchTweetData, tweetId )
-	yield put( SetTweetDataAction( data[0] ))
+	const data: Tweet = yield call ( TweetsAPI.fetchTweetData, tweetId )
+	yield put( SetTweetDataAction( data ))
 } catch ( error ) {
 	yield put( SetLoadingStatusAction( LoadingStatus.ERROR ))
 	console.log( error, 'ooops' ) 
 }
-}
+}   
 
 
 export function* sagasTweet( ){ 

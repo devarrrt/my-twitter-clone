@@ -33,7 +33,6 @@ const reducerTweets = produce((draft: Draft<TweetsState>, action: TweetsActions)
 			break;
 
 		case TweetsActionsType.ADD_TWEET:
-			draft.tweets.push(action.payload)
 			draft.tweets.splice( 0, 0, action.payload )
 			draft.addTweetStatus = AddFormStatus.NEVER
 			break;
