@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, FormControl, FormGroup, TextField } from '@material-ui/core'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Color } from '@material-ui/lab/Alert';
+import { useDispatch, useSelector } from 'react-redux'
+
 
 import { ModalBlock } from '../../../components'
 import { useStylesSignIn } from './../stylesSignIn';
+import { FetchSignInAction } from './../../../redux/ducks/user/actionsUser';
+import { selectUserStatus } from './../../../redux/ducks/user/selectorsUser';
+import { LoadingStatus } from '../../../redux/ducks/user/stateTypes';
 
+
+
+// {
+// 	"username": "burmakina-1999@mail.ru",
+// 	"password": "motherlode"
+// } 
 
 
 
@@ -27,14 +39,32 @@ const LoginFormSchema = yup.object().shape({
 
 const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 	const styles = useStylesSignIn()
+	const dispatch = useDispatch()
+	const loadingStatus = useSelector( selectUserStatus )
 
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginFormProps>({
 		resolver: yupResolver(LoginFormSchema),
 	})
+	// const openNotificationRef = React.useRef<(text: string, type: Color) => void>(() => {})
 
-	const onSubmit = (data: any) => {
-		console.log(data)
+
+
+
+
+	const onSubmit = async (data: LoginFormProps) => {
+		dispatch( FetchSignInAction( data ) )
 	}
+
+
+	useEffect(()=> {
+		if ( loadingStatus === LoadingStatus.SUCCESS ) {
+			console.log( 'Авторизация успешна' )
+			onCloseModal() 
+		} else if ( loadingStatus === LoadingStatus.ERROR ) {
+			console.log( 'Неверный пароль или логин' )
+		} 
+	}, [loadingStatus, onCloseModal]) 
+
 
 
 	return (
@@ -59,6 +89,7 @@ const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 							error={!!errors.email}
 							fullWidth
 							autoFocus
+							placeholder="burmakina-1999@mail.ru"
 							{...register("email")} />
 
 						<TextField
@@ -74,6 +105,7 @@ const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 							helperText={errors.password?.message}
 							error={!!errors.password}
 							fullWidth
+							placeholder="motherlode"
 							{...register("password")} />
 
 
