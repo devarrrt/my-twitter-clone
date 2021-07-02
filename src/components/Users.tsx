@@ -2,6 +2,8 @@ import React from 'react'
 import { Paper, List, ListItemText, Typography, Avatar, ListItemAvatar, Button, ListItem } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined'
 import { useHomeStyles } from '../pages/Home/useHomeStyles';
+import { useSelector } from 'react-redux';
+import { selectUsersItems } from '../redux/ducks/users/selectorsUsers';
 
 
 
@@ -12,6 +14,10 @@ interface IUsers {
 
 
 const Users: React.FC<IUsers> = ({ styles }) => {
+// const users = useSelector(selectUsersItems)
+
+//users не используется, тк нет саги, тк нет запроса, тк нет сервера 
+
 	return (
 		<Paper className={styles.rightSideBlock}>
 			<Paper className={styles.rightSideBlockHeader} variant="outlined">

@@ -1,4 +1,5 @@
 import { axios } from '../../src/core/axios'
+import { RegisterFormProps } from '../pages/SignIn/components/RegisterModal';
 import { LoginFormProps } from './../pages/SignIn/components/LoginModal';
 
 
@@ -17,6 +18,17 @@ async signIn( postData: LoginFormProps ): Promise<ResponseApi> {
 	})
 	return data
 },
+ 
+async signUp(postData: RegisterFormProps): Promise<ResponseApi> {
+	const { data } = await axios.post<ResponseApi>('/auth/register', {
+		email: postData.email,
+		username: postData.username,
+		fullname: postData.fullname,
+		password: postData.password,
+		password2: postData.password2,
+	});
+	return data;
+},
 
 async getMe( ): Promise<ResponseApi>{
 	const { data } = await axios.get( '/users/me' )
@@ -24,5 +36,8 @@ async getMe( ): Promise<ResponseApi>{
 }
 
 
-
 }
+
+
+
+//1.20 остановились на регистрации

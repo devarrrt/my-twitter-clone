@@ -3,6 +3,7 @@ import { sagasTags } from "./ducks/tags/sagasTags";
 import { sagasTweet } from "./ducks/tweet/sagasTweet";
 import { sagasTweets } from "./ducks/tweets/sagasTweets";
 import { sagasUser } from "./ducks/user/sagasUser";
+import { sagasUsers } from "./ducks/users/sagasUser";
 
 
 export default function* rootSaga() {
@@ -10,6 +11,7 @@ export default function* rootSaga() {
 		sagasTweets(),
 		sagasTags(),
 		sagasTweet(),
-		sagasUser()
+		sagasUser(),
+		sagasUsers()
 	])
 }

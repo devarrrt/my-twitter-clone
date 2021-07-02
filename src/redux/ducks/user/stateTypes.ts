@@ -19,8 +19,6 @@ export interface User {
   location?: string;
   about?: string;
   website?: string;
-
-
 }
 
 export interface UserState {

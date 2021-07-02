@@ -2,6 +2,7 @@
 import { Action } from 'redux';
 import { LoginFormProps } from '../../../pages/SignIn/components/LoginModal';
 import { LoadingStatus, User, UserState } from './stateTypes';
+import { RegisterFormProps } from './../../../pages/SignIn/components/RegisterModal';
 
 export enum UserActionsType  {
   FETCH_USER_DATA = 'user/FETCH_USER_DATA',
@@ -54,6 +55,16 @@ export const FetchSignInAction = ( payload: LoginFormProps ): FetchSignInAI => (
 	payload
 })
 
+// fetchSignUp
+export interface FetchSignUpAI extends Action <UserActionsType> {
+	type: UserActionsType.FETCH_SIGN_UP
+	payload: RegisterFormProps
+}
+export const FetchSignUpAction = (payload: RegisterFormProps ): FetchSignUpAI => ({
+	type: UserActionsType.FETCH_SIGN_UP,
+	payload
+})
+
 
 
 
@@ -62,5 +73,6 @@ export type UserActions =
 FetchUserDataAI |
 SetUserdataAI |
 SetUserLoadingStatusAI | 
-FetchSignInAI
+FetchSignInAI |
+FetchSignUpAI
 

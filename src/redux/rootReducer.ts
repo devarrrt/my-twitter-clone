@@ -7,6 +7,8 @@ import { TweetState } from "./ducks/tweet/stateTypes";
 import reducerTweet from './ducks/tweet/reducerTweet';
 import { UserState } from './ducks/user/stateTypes';
 import reducerUser from "./ducks/user/reducerUser";
+import { UsersState } from "./ducks/users/stateTypes";
+import reduserUsers from './ducks/users/reducerUsers';
 
 
 
@@ -14,12 +16,14 @@ export const rootReducer = combineReducers({
 	tweets: reducerTweets,
 	tags: reducerTags,
 	tweet: reducerTweet,
-	user: reducerUser
+	user: reducerUser,
+	users: reduserUsers
 })
 
 export interface RootState {
 	tweets: TweetsState,
 	tags: TagsState,
 	tweet: TweetState,
-	user: UserState
+	user: UserState,
+	users: UsersState
 }

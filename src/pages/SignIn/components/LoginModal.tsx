@@ -3,7 +3,6 @@ import { Button, FormControl, FormGroup, TextField } from '@material-ui/core'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Color } from '@material-ui/lab/Alert';
 import { useDispatch, useSelector } from 'react-redux'
 
 
@@ -13,12 +12,6 @@ import { FetchSignInAction } from './../../../redux/ducks/user/actionsUser';
 import { selectUserStatus } from './../../../redux/ducks/user/selectorsUser';
 import { LoadingStatus } from '../../../redux/ducks/user/stateTypes';
 
-
-
-// {
-// 	"username": "burmakina-1999@mail.ru",
-// 	"password": "motherlode"
-// } 
 
 
 
@@ -40,7 +33,7 @@ const LoginFormSchema = yup.object().shape({
 const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 	const styles = useStylesSignIn()
 	const dispatch = useDispatch()
-	const loadingStatus = useSelector( selectUserStatus )
+	const loadingStatus = useSelector(selectUserStatus)
 
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginFormProps>({
 		resolver: yupResolver(LoginFormSchema),
@@ -52,18 +45,18 @@ const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 
 
 	const onSubmit = async (data: LoginFormProps) => {
-		dispatch( FetchSignInAction( data ) )
+		dispatch(FetchSignInAction(data))
 	}
 
 
-	useEffect(()=> {
-		if ( loadingStatus === LoadingStatus.SUCCESS ) {
-			console.log( 'Авторизация успешна' )
-			onCloseModal() 
-		} else if ( loadingStatus === LoadingStatus.ERROR ) {
-			console.log( 'Неверный пароль или логин' )
-		} 
-	}, [loadingStatus, onCloseModal]) 
+	useEffect(() => {
+		if (loadingStatus === LoadingStatus.SUCCESS) {
+			console.log('Авторизация успешна')
+			onCloseModal()
+		} else if (loadingStatus === LoadingStatus.ERROR) {
+			console.log('Неверный пароль или логин')
+		}
+	}, [loadingStatus, onCloseModal])
 
 
 
@@ -108,15 +101,16 @@ const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 							placeholder="motherlode"
 							{...register("password")} />
 
-
 						<Button
 							type="submit"
 							variant="contained"
 							color="primary"
-							fullWidth>
+							fullWidth
+							disabled= { loadingStatus === LoadingStatus.LOADING }
+							>
 							Войти
 						</Button>
-					</form>
+					</form> 
 
 				</FormGroup>
 			</FormControl>

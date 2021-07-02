@@ -23,6 +23,8 @@ const reducerUser = produce((draft: Draft<UserState>, action: UserActions) => {
 			draft.status = action.payload
 			break;
 
+			
+
 		default:
 			break;
 

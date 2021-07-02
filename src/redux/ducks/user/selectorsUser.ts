@@ -12,3 +12,4 @@ export const selectUserLoading = ( state: RootState ): boolean => selectUserStat
 
 export const selectUserIsLoaded = ( state: RootState ): boolean => selectUserState( state ).status === LoadingStatus.LOADED
 
+export const selectIsAuth = ( state: RootState ): boolean => !!selectUserState(state).data

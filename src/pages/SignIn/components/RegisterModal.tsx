@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { FormControl, FormGroup, Button, TextField } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux' 
+
 import { useStylesSignIn } from './../stylesSignIn';
-
-
 import ModalBlock from './../../../components/ModalBlock';
+import { FetchSignUpAction } from './../../../redux/ducks/user/actionsUser';
+import { selectUserStatus } from '../../../redux/ducks/user/selectorsUser';
+import { LoadingStatus } from '../../../redux/ducks/user/stateTypes';
 
 
 
 
-
+ 
 
 interface IRegisterModal {
 	open: boolean;
@@ -38,6 +41,10 @@ const RegisterFormSchema = yup.object().shape({
 
 const RegisterModal: React.FC<IRegisterModal> = ({ open, onCloseModal }) => {
 	const styles = useStylesSignIn()
+	const dispatch = useDispatch()
+	const loadingStatus = useSelector( selectUserStatus )
+
+	console.log( loadingStatus )
 
 	const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormProps>({
 		resolver: yupResolver(RegisterFormSchema),
@@ -45,7 +52,17 @@ const RegisterModal: React.FC<IRegisterModal> = ({ open, onCloseModal }) => {
 
 	const onSubmit = (data: any) => {
 		console.log(data)
+		dispatch( FetchSignUpAction(data))
 	}
+
+useEffect(()=> {
+	if ( loadingStatus === LoadingStatus.SUCCESS ) {
+		console.log( 'Регистрация прошла успешно' )
+		onCloseModal()
+	} else if ( loadingStatus === LoadingStatus.ERROR ) {
+		console.log( 'Ошибочка' )
+	}
+}, [ loadingStatus, onCloseModal ])
 
 
 
@@ -140,8 +157,10 @@ const RegisterModal: React.FC<IRegisterModal> = ({ open, onCloseModal }) => {
 							type="submit"
 							variant="contained"
 							color="primary"
-							fullWidth>
-							Войти
+							fullWidth
+							disabled={ loadingStatus === LoadingStatus.LOADING }
+							>
+							Регистрация
             </Button>
 					</form>
 
