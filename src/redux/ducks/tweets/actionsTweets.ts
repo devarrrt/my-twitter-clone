@@ -1,9 +1,8 @@
 import { Action } from "redux";
 import { AddFormStatus, LoadingStatus, Tweet, TweetsState } from './stateTypes';
-import AddTweetForm from './../../../components/AddTweetForm';
 
 
-
+ 
 export enum TweetsActionsType {
 	FETCH_TWEETS = 'tweets/FETCH_TWEETS',
 	SET_TWEETS = 'tweets/SET_TWEETS',
@@ -16,7 +15,7 @@ export enum TweetsActionsType {
 
 
 //fetchTweets
-export interface FetchTweetsAI extends Action<TweetsActionsType> {
+export interface FetchTweetsAI extends Action <TweetsActionsType> {
 	type: TweetsActionsType.FETCH_TWEETS
 }
 export const FetchTweetsAction = (): FetchTweetsAI => ({
@@ -58,7 +57,7 @@ export const FetchAddTweetAction = ( payload: string ): FetchAddTweetAI => ({
 	type: TweetsActionsType.FETCH_ADD_TWEET,
 	payload
 })
-
+ 
 
 
 //AddTweet

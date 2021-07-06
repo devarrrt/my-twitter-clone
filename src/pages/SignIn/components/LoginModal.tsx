@@ -11,6 +11,7 @@ import { useStylesSignIn } from './../stylesSignIn';
 import { FetchSignInAction } from './../../../redux/ducks/user/actionsUser';
 import { selectUserStatus } from './../../../redux/ducks/user/selectorsUser';
 import { LoadingStatus } from '../../../redux/ducks/user/stateTypes';
+import { Color } from '@material-ui/lab/Alert';
 
 
 
@@ -38,8 +39,7 @@ const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginFormProps>({
 		resolver: yupResolver(LoginFormSchema),
 	})
-	// const openNotificationRef = React.useRef<(text: string, type: Color) => void>(() => {})
-
+  const openNotificationRef = React.useRef<(text: string, type: Color) => void>(() => {})
 
 
 
@@ -49,15 +49,16 @@ const LoginModal: React.FC<ILoginModal> = ({ open, onCloseModal }) => {
 	}
 
 
-	useEffect(() => {
-		if (loadingStatus === LoadingStatus.SUCCESS) {
-			console.log('Авторизация успешна')
-			onCloseModal()
-		} else if (loadingStatus === LoadingStatus.ERROR) {
-			console.log('Неверный пароль или логин')
+	useEffect(()=> {
+		if ( loadingStatus === LoadingStatus.SUCCESS ) {
+			console.log( 'Логинизация прошла успешно' )
+			openNotificationRef.current('Логинизация успешна!', 'success');
+		onCloseModal()
+		} else if ( loadingStatus === LoadingStatus.ERROR ) {
+			console.log('Ошибка при входе!')
+			openNotificationRef.current('Ошибка при входе!', 'error');
 		}
-	}, [loadingStatus, onCloseModal])
-
+	}, [ loadingStatus, onCloseModal ])
 
 
 	return (

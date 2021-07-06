@@ -6,16 +6,18 @@ import { AddFormStatus, LoadingStatus } from './stateTypes';
 
 
 
+
 export function* fetchTweetsRequest() {
 	try {
 		//@ts-ignore
 		const data = yield call(TweetsAPI.fetchTweets)
 		yield put(SetTweetsAction(data))
 	} catch (error) {
-		yield put(SetLoadingStatusAction(LoadingStatus.ERROR))
-		console.log(error)
+		yield put( SetLoadingStatusAction(LoadingStatus.ERROR))
 	}
 }
+
+
 
 export function* fetchAddTweetRequest({ payload: text }: FetchAddTweetAI) {
 	try {

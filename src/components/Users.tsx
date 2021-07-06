@@ -2,8 +2,8 @@ import React from 'react'
 import { Paper, List, ListItemText, Typography, Avatar, ListItemAvatar, Button, ListItem } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined'
 import { useHomeStyles } from '../pages/Home/useHomeStyles';
-import { useSelector } from 'react-redux';
-import { selectUsersItems } from '../redux/ducks/users/selectorsUsers';
+// import { useSelector } from 'react-redux';
+// import { selectUsersItems } from '../redux/ducks/users/selectorsUsers';
 
 
 

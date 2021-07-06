@@ -5,7 +5,7 @@ import { AddFormStatus, LoadingStatus, TweetsState } from './stateTypes';
 
 
 const initialTweetsState: TweetsState = {
-	tweets: [],
+	tweets: [], 
 	loadingStatus: LoadingStatus.NEVER,
 	addTweetStatus: AddFormStatus.NEVER
 }

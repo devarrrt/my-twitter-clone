@@ -14,13 +14,13 @@ export enum UserActionsType  {
 }
 
 
-//fetch user
+//fetch user data
 export interface FetchUserDataAI extends Action <UserActionsType> {
 	type: UserActionsType.FETCH_USER_DATA
 }
-export const FetchUserDataAction = ( ): FetchUserDataAI => ({
+export const FetchUserDataAction = ( ): FetchUserDataAI => ({ //2 шаг. указывается тип, который переходит в сагу. --> sagasUser 
 	type: UserActionsType.FETCH_USER_DATA
-})
+}) 
 
 
 //set user
@@ -28,7 +28,7 @@ export interface SetUserdataAI extends Action <UserActionsType> {
 	type: UserActionsType.SET_USER_DATA,
 	payload: User | undefined
 }
-export const SetUserdataAction = ( payload: UserState['data'] ): SetUserdataAI => ({
+export const SetUserdataAction = ( payload: UserState['data'] ): SetUserdataAI => ({//7шаг. получаем данные о юзере и переходим в редьюсер --> reducerUser
 	type: UserActionsType.SET_USER_DATA,
 	payload
 })
@@ -54,6 +54,8 @@ export const FetchSignInAction = ( payload: LoginFormProps ): FetchSignInAI => (
 	type: UserActionsType.FETCH_SIGN_IN,
 	payload
 })
+
+
 
 // fetchSignUp
 export interface FetchSignUpAI extends Action <UserActionsType> {

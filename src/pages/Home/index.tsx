@@ -15,7 +15,7 @@ const Home = () => {
 	const styles = useHomeStyles()
 	const dispatch = useDispatch()
 	const tweets = useSelector(selectTweetsItems)
-	const isLoadingTweets = useSelector( selectTweetsLoading ) 
+	const loadingTweets = useSelector( selectTweetsLoading )
 
 	useEffect(() => {
 		dispatch(FetchTweetsAction())
@@ -25,6 +25,7 @@ const Home = () => {
 
 
 	return (
+
 		<Paper className={styles.tweetsWrapper} variant="outlined">
 
 			<Paper className={styles.tweetsHeader} variant="outlined">
@@ -49,14 +50,14 @@ const Home = () => {
 			</Route>
 
 			<Route path="/home" exact>
-				{
-						isLoadingTweets ? <div className={ styles.tweetsCentred }> <CircularProgress /> </div> :
-						tweets && tweets.map(tweet => (<Tweet styles={styles} {...tweet}  key={tweet._id} />))
+				{ loadingTweets ?
+				<div className={ styles.tweetsCentred }> 
+				<CircularProgress />
+				 </div> :  tweets && tweets.map( tweet => ( <Tweet styles ={ styles } { ...tweet } key={ tweet._id } /> ))
 				}
 			</Route>
 
-			<Route path='/home/tweet/:id' component= { FullTweet } exact />
-
+			<Route path='/home/tweet/:id' component={FullTweet} exact />
 
 		</Paper>
 	)

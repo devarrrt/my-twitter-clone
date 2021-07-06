@@ -10,6 +10,7 @@ import ModalBlock from './../../../components/ModalBlock';
 import { FetchSignUpAction } from './../../../redux/ducks/user/actionsUser';
 import { selectUserStatus } from '../../../redux/ducks/user/selectorsUser';
 import { LoadingStatus } from '../../../redux/ducks/user/stateTypes';
+import { Color } from '@material-ui/lab/Alert';
 
 
 
@@ -43,24 +44,23 @@ const RegisterModal: React.FC<IRegisterModal> = ({ open, onCloseModal }) => {
 	const styles = useStylesSignIn()
 	const dispatch = useDispatch()
 	const loadingStatus = useSelector( selectUserStatus )
-
-	console.log( loadingStatus )
-
+  const openNotificationRef = React.useRef<(text: string, type: Color) => void>(() => {})
+	
 	const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormProps>({
 		resolver: yupResolver(RegisterFormSchema),
 	})
 
 	const onSubmit = (data: any) => {
-		console.log(data)
 		dispatch( FetchSignUpAction(data))
 	}
 
 useEffect(()=> {
 	if ( loadingStatus === LoadingStatus.SUCCESS ) {
 		console.log( 'Регистрация прошла успешно' )
+		openNotificationRef.current('Регистрация успешна!', 'success');
 		onCloseModal()
 	} else if ( loadingStatus === LoadingStatus.ERROR ) {
-		console.log( 'Ошибочка' )
+		openNotificationRef.current('Ошибка при регистрации!', 'error');
 	}
 }, [ loadingStatus, onCloseModal ])
 
@@ -76,7 +76,7 @@ useEffect(()=> {
 
 					<form onSubmit={handleSubmit(onSubmit)}>
 				
-												<TextField
+								<TextField
 							id="email"
 							label="E-Mail"
 							className={styles.registerField}

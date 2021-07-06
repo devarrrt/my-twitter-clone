@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames'
 import { Avatar, Paper, Typography, IconButton, Divider, CircularProgress } from '@material-ui/core';
