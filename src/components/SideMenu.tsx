@@ -10,11 +10,13 @@ import HomeIcon from '@material-ui/icons/HomeOutlined';
 import UserIcon from '@material-ui/icons/PermIdentityOutlined';
 import CreateIcon from '@material-ui/icons/Create';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 import ModalBlock from './ModalBlock';
 import AddTweetForm from './AddTweetForm';
 import { useHomeStyles } from '../pages/Home/useHomeStyles';
-
+import UserSideProfile from './UserSideProfile';
+import { selectUserData } from '../redux/ducks/user/selectorsUser';
 
 
 
@@ -25,6 +27,7 @@ interface ISideMenu {
 
 const SideMenu: React.FC<ISideMenu> = ({ styles }) => {
 const [visibleAddTweet, setVisibleAddTweet] = useState<boolean>(false)
+const userData = useSelector(selectUserData)
 
 
 const handleClickOpenAddTweet = ( ) => {
@@ -117,7 +120,8 @@ const onCloseAddTweet = () => {
         </li>
 
         <li className={styles.sideMenuListItem}>
-            <div>
+				<Link to={ `/user/${userData?._id}` }>
+				<div>
               <UserIcon className={styles.sideMenuListItemIcon} />
               <Hidden smDown>
                 <Typography className={styles.sideMenuListItemLabel} variant="h6">
@@ -125,6 +129,7 @@ const onCloseAddTweet = () => {
                 </Typography>
               </Hidden>
             </div>
+				</Link>
         </li>
 
 				<li className={styles.sideMenuListItem}>
@@ -146,6 +151,7 @@ const onCloseAddTweet = () => {
 					</ModalBlock>
 				</li>
 			</ul>
+			<UserSideProfile styles={ styles }/>
 		</>
 	)
 }

@@ -53,7 +53,7 @@ const Home = () => {
 				{ loadingTweets ?
 				<div className={ styles.tweetsCentred }> 
 				<CircularProgress />
-				 </div> :  tweets && tweets.map( tweet => ( <Tweet styles ={ styles } { ...tweet } key={ tweet._id } /> ))
+				 </div> :  tweets && tweets.map( tweet => ( <Tweet styles ={ styles }  images={ tweet.images } { ...tweet } key={ tweet._id } /> ))
 				}
 			</Route>
 

@@ -7,25 +7,30 @@ import ShareIcon from '@material-ui/icons/ReplyOutlined';
 import { Link } from 'react-router-dom';
 import { Avatar, Paper, IconButton, Typography, Menu, MenuItem } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
+import {useDispatch} from 'react-redux'
 
 import { useHomeStyles } from './../pages/Home/useHomeStyles';
 import { formatDate } from '../utils/formatDate';
+import { User } from '../redux/ducks/user/stateTypes';
+import { RemoveTweetAction } from '../redux/ducks/tweets/actionsTweets';
 
 
 
 interface ITweet {
 	styles: ReturnType<typeof useHomeStyles>,
 	_id: string;
-	text: string;
-	createdAt: string;
-	images?: string[];
-	user: any
+  text: string;
+  createdAt: string;
+  images?: string[];
+  user: Pick<User, '_id' | 'fullname' | 'username'>;
 }
 
-const Tweet: React.FC<ITweet> = ({ styles, _id, text, createdAt }) => {
+const Tweet: React.FC<ITweet> = ({ styles, _id, text, images, createdAt, user }) => {
 const [ visibleMenu, setVisibleMenu ] = useState<null | HTMLElement>(null)
 const open = Boolean(visibleMenu) //Boolean конвертирует дюбое значение в true или false. Если будет нода - то истина, если null - ложь. Это нужно для компонента Menu, который принимает open, у которого булевое значение
+const dispatch = useDispatch()
+
+
 
 
 const openMenu = ( e: React.MouseEvent<HTMLElement> ) => {
@@ -40,6 +45,14 @@ const handleClose = ( e: React.MouseEvent<HTMLElement> ): void => {
 	setVisibleMenu(null)
 }
 
+const handleRemove= (e: React.MouseEvent<HTMLElement> ): void => {
+	handleClose(e)
+	if ( window.confirm( 'Вы действительно хотите удалить твит?' )) {
+		dispatch(RemoveTweetAction( _id ) )
+	}
+}
+
+
 
 	return (
 		<Link className={styles.tweetWrapper} to={`/home/tweet/${_id}`}>
@@ -50,8 +63,8 @@ const handleClose = ( e: React.MouseEvent<HTMLElement> ): void => {
 				<div className={styles.tweetContent}>
 					<div className={styles.tweetHeader}>
 						<div>
-							<b>user.fullname</b>&nbsp;
-							<span className={styles.tweetUserName}>@user.username</span>&nbsp;
+							<b>{user.fullname}</b>&nbsp;
+							<span className={styles.tweetUserName}>@{user.username}</span>&nbsp;
 							<span className={styles.tweetUserName}>·</span>&nbsp;
 							<span className={styles.tweetUserName}>{formatDate(new Date(createdAt))} назад </span>
 						</div>
@@ -68,7 +81,7 @@ const handleClose = ( e: React.MouseEvent<HTMLElement> ): void => {
 							<MenuItem onClick={handleClose}>
 								Редактировать
 							</MenuItem>
-							<MenuItem>Удалить твит</MenuItem>
+							<MenuItem onClick={handleRemove}>Удалить твит</MenuItem>
 
 							</Menu> 
 						</div>

@@ -15,6 +15,7 @@ import { selectTweetData } from '../redux/ducks/tweet/selectorsTweet';
 import { selectTweetLoading } from './../redux/ducks/tweet/selectorsTweet';
 import { FetchTweetDataAction, SetTweetDataAction } from './../redux/ducks/tweet/actionsTweet';
 import Tweet from './Tweet';
+import ImageList from './ImageList';
 
 
 
@@ -48,10 +49,10 @@ const FullTweet: React.FC<IFullTweet> = (): React.ReactElement | null => {
 			<div className={styles.tweetsCentred}>
 				<CircularProgress />
 			</div>
-
 		)
 	}
 
+	
 
 	if (tweetData) {
 		return (
@@ -78,7 +79,7 @@ const FullTweet: React.FC<IFullTweet> = (): React.ReactElement | null => {
 					<Typography className={styles.fullTweetText} gutterBottom>
 						{tweetData.text}
 						<div className="tweet-images">
-
+						{tweetData.images && <ImageList styles={styles} images={tweetData.images} />}
 						</div>
 					</Typography>
 

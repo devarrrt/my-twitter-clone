@@ -12,7 +12,7 @@ const initialUserState: UserState = {
 
 const reducerUser = produce((draft: Draft<UserState>, action: UserActions) => {
 
-	switch (action.type) { 
+	switch (action.type) {
 
 		case UserActionsType.SET_USER_DATA: //8 шаг. когда вызывается это тип, данные о юзере с undefined меняются на те, которые перешли из сервера --> selectorsUser
 			draft.data = action.payload
@@ -23,7 +23,10 @@ const reducerUser = produce((draft: Draft<UserState>, action: UserActions) => {
 			draft.status = action.payload
 			break;
 
-			
+		case UserActionsType.SIGN_OUT:
+			draft.data = undefined
+			break
+
 
 		default:
 			break;

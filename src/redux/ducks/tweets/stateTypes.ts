@@ -1,3 +1,4 @@
+import { User } from "../user/stateTypes";
 
  
 export enum LoadingStatus {
@@ -14,15 +15,11 @@ export enum AddFormStatus {
 }
 
 export interface Tweet {
-	_id: string,
-	text: string, 
-	createdAt: string,
-	user: {
-		fullname: string,
-		username: string,
-		avatarUrl: string
-	},
-
+  _id: string;
+  text: string;
+  images?: [];
+  createdAt: string;
+  user: User;
 }
 
 export interface TweetsState {

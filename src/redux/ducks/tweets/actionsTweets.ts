@@ -9,7 +9,8 @@ export enum TweetsActionsType {
 	SET_LOADING_STATUS = 'tweets/SET_LOADING_STATUS',
 	FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
 	ADD_TWEET = 'tweets/ADD_TWEET',
-	SET_ADD_FORM_STATUS= 'tweets/SET_ADD_FORM_STATUS'
+	SET_ADD_FORM_STATUS= 'tweets/SET_ADD_FORM_STATUS',
+	REMOVE_TWEET = 'tweets/REMOVE_TWEET'
 }
 
 
@@ -51,9 +52,15 @@ export const SetLoadingStatusAction = (payload: LoadingStatus): SetLoadingStatus
 //fetchAdd
 export interface FetchAddTweetAI extends Action <TweetsActionsType> {
 	type: TweetsActionsType.FETCH_ADD_TWEET,
-	payload: string
+	payload: {
+		value: string,
+		images: string[]	
+	}
 }
-export const FetchAddTweetAction = ( payload: string ): FetchAddTweetAI => ({
+export const FetchAddTweetAction = ( payload: { 
+	value: string,
+	images: string[]	
+}): FetchAddTweetAI => ({
 	type: TweetsActionsType.FETCH_ADD_TWEET,
 	payload
 })
@@ -70,6 +77,7 @@ export const AddTweetAction = ( payload: Tweet ): AddTweetAI => ({
 	payload
 })
 
+
 //form status
 export interface SetAddFormStatusAI extends Action <TweetsActionsType> {
 	type: TweetsActionsType.SET_ADD_FORM_STATUS,
@@ -82,11 +90,23 @@ export const SetAddFormStatusAction = ( payload: AddFormStatus ): SetAddFormStat
 
 
 
+//remove tweet
+export interface RemoveTweetAI extends Action <TweetsActionsType>{
+	type: TweetsActionsType.REMOVE_TWEET,
+	payload: string 
+}
+export const RemoveTweetAction = ( payload: string ) => ({
+	type: TweetsActionsType.REMOVE_TWEET,
+	payload
+})
+
+
 export type TweetsActions =
 	SetTweetsAI |
 	FetchTweetsAI |
 	SetLoadingStatusAI |
 	FetchAddTweetAI | 
 	AddTweetAI |
-	SetAddFormStatusAI
+	SetAddFormStatusAI |
+	RemoveTweetAI
 	

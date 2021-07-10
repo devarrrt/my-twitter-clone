@@ -33,9 +33,12 @@ async signUp(postData: RegisterFormProps): Promise<ResponseApi> {
 async getMe( ): Promise<ResponseApi>{
 	const { data } = await axios.get( '/users/me' )
 	return data
+},
+
+async getUserInfo( userId: string ): Promise<ResponseApi> {
+	const { data } = await axios.get('/users/' + userId)
+	return data
 }
-
-
 }
 
 

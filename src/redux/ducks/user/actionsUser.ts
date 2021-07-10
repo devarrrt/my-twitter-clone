@@ -69,6 +69,15 @@ export const FetchSignUpAction = (payload: RegisterFormProps ): FetchSignUpAI =>
 
 
 
+//out
+export interface SignOutActionAI extends Action <UserActionsType> {
+	type: UserActionsType.SIGN_OUT
+}
+export const SignOutAction = (): SignOutActionAI => ({
+	type: UserActionsType.SIGN_OUT
+})
+
+
 
 
 export type UserActions = 
@@ -76,5 +85,6 @@ FetchUserDataAI |
 SetUserdataAI |
 SetUserLoadingStatusAI | 
 FetchSignInAI |
-FetchSignUpAI
+FetchSignUpAI |
+SignOutActionAI
 

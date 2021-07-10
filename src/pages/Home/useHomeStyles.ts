@@ -126,6 +126,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   },
   tweetFooter: {
     display: 'flex',
+		alignItems: 'center',
     position: 'relative',
     left: -13,
     justifyContent: 'space-between',
@@ -212,6 +213,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   addFormBottomActions: {
     marginTop: 10,
     paddingLeft: 70,
+		alignItems: 'center'
   },
   addFormTextarea: {
     width: '100%',
@@ -304,5 +306,18 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
 		color: 'black',
 		textDecoration: 'none',
 		cursor: 'pointer'
+	},
+	IconsList: {
+		display: 'flex',
+		padding: 0,
+		margin: 0,
+	},
+	ItemIcon: {
+		listStyle: 'none',
+		margin: '0px 3px',
+		cursor: 'pointer',
+		'&:hover': {
+			opacity: 0.7
+		},
 	}
 }));

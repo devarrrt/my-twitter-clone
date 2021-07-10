@@ -12,7 +12,7 @@ import { selectIsAuth, selectUserStatus } from './redux/ducks/user/selectorsUser
 import { FetchUserDataAction } from './redux/ducks/user/actionsUser';
 import { LoadingStatus } from './redux/ducks/user/stateTypes';
 import { useHomeStyles } from './pages/Home/useHomeStyles';
-
+import MyProfile from './pages/MyProfile/index'
 
 
 const App = () => {
@@ -54,6 +54,7 @@ const App = () => {
 				<Route path="/signin" component={SignIn} exact />
 				<Layout>
 					<Route path="/home" component={Home} />
+					<Route path="/user/:id" component={MyProfile} exact/>
 				</Layout>
 			</Switch>
 		</div>

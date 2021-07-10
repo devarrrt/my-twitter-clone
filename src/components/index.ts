@@ -7,3 +7,7 @@ export { default as Tweet } from './Tweet'
 export { default as Tags } from './Tags'
 export { default as Users } from './Users'
 export { default as FullTweet } from './FullTweet'
+export { default as UploadImages } from './UploadImages'
+export { default as ImageList } from './ImageList'
+export { default as UserSideProfile } from './UserSideProfile'
+

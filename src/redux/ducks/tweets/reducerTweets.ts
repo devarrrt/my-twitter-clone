@@ -41,6 +41,10 @@ const reducerTweets = produce((draft: Draft<TweetsState>, action: TweetsActions)
 			draft.addTweetStatus = action.payload
 			break;
 
+		case TweetsActionsType.REMOVE_TWEET:
+			draft.tweets = draft.tweets.filter(( tweet ) => tweet._id !== action.payload )
+		break;
+
 		default:
 			break
 	}
