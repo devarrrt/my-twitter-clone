@@ -10,4 +10,6 @@ export { default as FullTweet } from './FullTweet'
 export { default as UploadImages } from './UploadImages'
 export { default as ImageList } from './ImageList'
 export { default as UserSideProfile } from './UserSideProfile'
+export { default as ActivatePage } from './ActivatePage'
+
 

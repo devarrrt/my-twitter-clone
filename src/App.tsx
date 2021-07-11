@@ -4,7 +4,6 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-
 import SignIn from './pages/SignIn/index';
 import Layout from './pages/Layout';
 import Home from './pages/Home';
@@ -13,6 +12,7 @@ import { FetchUserDataAction } from './redux/ducks/user/actionsUser';
 import { LoadingStatus } from './redux/ducks/user/stateTypes';
 import { useHomeStyles } from './pages/Home/useHomeStyles';
 import MyProfile from './pages/MyProfile/index'
+import { ActivatePage } from './components/index'
 
 
 const App = () => {
@@ -54,7 +54,8 @@ const App = () => {
 				<Route path="/signin" component={SignIn} exact />
 				<Layout>
 					<Route path="/home" component={Home} />
-					<Route path="/user/:id" component={MyProfile} exact/>
+					<Route path="/user/:id" component={MyProfile} exact />
+					{/* <Route path="/user/activate/:hash" component={ActivatePage}/> */}
 				</Layout>
 			</Switch>
 		</div>
@@ -63,6 +64,7 @@ const App = () => {
 
 
 export default App
+
 
 
 

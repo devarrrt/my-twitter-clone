@@ -38,9 +38,16 @@ async getMe( ): Promise<ResponseApi>{
 async getUserInfo( userId: string ): Promise<ResponseApi> {
 	const { data } = await axios.get('/users/' + userId)
 	return data
+},
+
+async verify( hash: string ): Promise<ResponseApi> {
+	const { data } = await axios.get<ResponseApi>('/auth/verify?hash=' + hash);
+	return data;
 }
+
+
 }
 
 
 
-//1.20 остановились на регистрации
+
